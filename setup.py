@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """
-A setuptools based setup module.
+A setuptools based setup module generated from the xBrite Sample Package.
 
 See:
-https://packaging.python.org/en/latest/distributing.html
-https://github.com/pypa/sampleproject
+* https://github.com/xBrite/sample-python-package
+* https://packaging.python.org/en/latest/distributing.html
+* https://github.com/pypa/sampleproject
 """
 
 # Always prefer setuptools over distutils
