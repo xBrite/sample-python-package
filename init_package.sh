@@ -29,3 +29,6 @@ echo "Press ENTER to finish cleaning up and remove this initialization script."
 read
 
 /bin/rm -f "$0"
+
+# Add a reminder
+echo "Don't forget to read all of the instructions in README.md."
