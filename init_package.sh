@@ -8,7 +8,7 @@ while [[ -z $PACKAGE_NAME ]]; do
     read PACKAGE_NAME
     if [[ ! -z $PACKAGE_NAME ]]; then
         echo "Press ^C to cancel."
-        echo "Press ENTER to initialize this package named '$PACKAGE_NAME'."
+        echo "Press ENTER to confirm and initialize this package named '$PACKAGE_NAME'."
         read
     fi
 done
@@ -25,7 +25,7 @@ THIS_FILE=$(basename "$0")
 find . -maxdepth 1 -type f -not -name "$THIS_FILE" -exec sed -i '' -e "s,sample_package,$PACKAGE_NAME,g" {} \+
 
 # Make sure the user knows we're about to remove this script now.
-echo "Press ENTER to finish cleaning up and remove this script."
+echo "Press ENTER to finish cleaning up and remove this initialization script."
 read
 
 /bin/rm -f "$0"
