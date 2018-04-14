@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+
+# Make sure we're in the right directory before we touch anything
+PROJECT_ROOT="$(cd "$(dirname "$0")/.."; pwd)"
+cd $PROJECT_ROOT
+
+# Delete a bunch of stuff we don't need
+rm -rf build
+rm -rf dist
+rm -rf *.egg-info
+find * -type f -name '*.pyc' -delete
+find * -type f -name '*.c' -delete
+find * -type f -name '*.so' -delete
+find * -type d -name '__pycache__' -exec rm -rf {} +
+
+# And might as well run the standard cleanup, too.
+# Just don't blow up if it triggers warnings (because it almost always will)
+python setup.py clean --all 2>/dev/null >/dev/null || true
+
+# Done
+echo "Cleaned up old build files."
