@@ -167,6 +167,7 @@ setup(
     name=name,
     version=version,
     description=description,
+    long_description=long_description,
     author=author,
     author_email=author_email,
     url=url,
