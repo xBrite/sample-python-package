@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "compounds": [],
+    "configurations": [
+      // One and only one launch config for debugging tests.
+      // Unfortunately, this isn't used when simply running (vs debugging)
+      // tests from vscode, and doesn't seem to inherit pytest configs, so
+      // you may need to set your own environment variables here if they are
+      // not being inherited from the shell.
+      {
+        "name": "Debug Tests",
+        "type": "python",
+        "request": "test",
+        "console": "integratedTerminal",
+        "justMyCode": false, // make sure to debug third-party variables/types, too.
+        "env": {
+            // Custom environment variables go here, e.g.
+            // "VARIABLE": "value"
+        },
+        // If you need to run a task before your test suite (e.g. to bootstrap a
+        // database), uncomment this and add the name of your task from tasks.json.
+        //"preLaunchTask": "name from tasks.json"
+      },
+      // For testing individual files
+      {
+        "name": "Python: Current File (Integrated Terminal)",
+        "type": "python",
+        "request": "launch",
+        "program": "${file}",
+        "console": "integratedTerminal",
+        "justMyCode": false, // make sure to debug third-party variables/types, too.
+        "env": {
+            // Custom environment variables go here, e.g.
+            // "VARIABLE": "value"
+        }
+      }
+    ]
+  }

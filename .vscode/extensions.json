@@ -1,0 +1,13 @@
+{
+  // These are a few extensions that I like. Feel free to disagree
+  // and add/remove whatever you want for your own project.
+  "recommendations": [
+    "bierner.github-markdown-preview",
+    "bungcip.better-toml",
+    "davidanson.vscode-markdownlint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "ms-python.python",
+    "rubymaniac.vscode-direnv"
+  ]
+}
