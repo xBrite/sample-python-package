@@ -113,7 +113,6 @@ with open(os.path.join(HERE, "README.md"), encoding="utf-8") as f:
 version = None
 with open(os.path.join(MODULE_PATH, "__init__.py")) as init_file:
     for line in init_file:
-        print(line)
         m = re.search(r"\b(?:__version__|VERSION)\b\s*(?::\s*\w+\s*)=\s*(.+?)$", line)
         if m:
             version = eval(m.group(1))
