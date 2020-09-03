@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Make sure we're in the project root
+cd -P -- $(dirname -- "$0")/../
+
+# Sort all inputs
+# Sadly doesn't respect .gitignore so just run it selectively:
+isort --profile black \
+    sample_package/ \
+    tests/
+
+# Remove unused variables/imports
+# Sadly doesn't respect .gitignore so just run it selectively:
+autoflake -r --in-place --remove-unused-variables --remove-all-unused-imports \
+    sample_package/ \
+    tests/
+
+# Autoformat everything else
+black .
+
+# Autoformat all of the stuff we do via `prettier`, assuming it's installed.
+# Note: prettier is a node application usually installed via yarn or homebrew,
+#       so it is not something this package will set up for you.
+if command -v prettier &> /dev/null; then
+    # Note: You can add many file formats here, e.g. `**/*.yml` or `**/*.graphql`
+    prettier \
+        --ignore-path .gitignore \
+        --write \
+        '**/*.json' \
+        '**/*.md'
+else
+    echo "prettier not installed; skipping"
+fi

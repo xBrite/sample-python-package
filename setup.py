@@ -69,8 +69,14 @@ tests_require = install_requires + (
     "pytest",
     "pytest-runner",
     "tox",
-    "flake8",  # linting
     "mypy",  # linting
+    "flake8",  # linting
+    "flake8-annotations",
+    "flake8-bugbear",
+    "flake8-builtins",
+    "flake8-logging-format",
+    "flake8-pep3101",
+    "flake8-tidy-imports",
 )
 
 dev_require = tests_require + (

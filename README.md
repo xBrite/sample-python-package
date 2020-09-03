@@ -42,12 +42,6 @@ keep everything in sync. More on these below
 - The `tox` config in `pyproject.toml` is set up for a handful of common test
   scenarios, including building with cython. You may not need all of it.
 
-## `bin` Directory
-
-This directory contains two scripts, `build` and `clean`, which are intended to
-make managing cython builds slightly easier during development. Feel free to
-delete these if you're not using cython.
-
 ## direnv
 
 TODO: why direnv?
@@ -55,4 +49,46 @@ TODO: link to direnv instructions
 
 ## Code autoformatting
 
-TODO: why autoformat?
+Developers can spend weeks arguing over the benefits of tabs vs spaces, or how
+all code should be legible within an 80x20 `vim` terminal window. Even with
+python's strong `PEP8` recommendations, not everything is covered and code can
+easily end up in situations where diffs and pull requests can become cluttered
+with unnecessary formatting changes as users forget to trim whitespace,
+rearrange the order of their import statements, etc.
+
+This sample package includes support for `vscode` to autoformat as much code as
+possible, and includes the `autoformat` script
+[described below](#bin-directory) to catch the rest. These work together to
+ensure that all code formatting from all contributors matches. Individual
+choices from these opinionated formatters may not make everyone happy but they
+are a good compromise toward consistency and clean code submitted for review.
+
+The recommended tools are:
+
+- [`black`](https://github.com/psf/black),
+  [`autoflake`](https://github.com/myint/autoflake), and
+  [`isort`](https://pycqa.github.io/isort/) for python code.
+- [`prettier`](https://prettier.io/) for markdown, json, and many other
+  formats should you choose to add them.
+
+## `bin` Directory
+
+This directory contains several wrapper scripts intended to make managing code
+and builds easier during development, especially when working with cython.
+
+- `autoformat`
+  - Runs tools like `black` and `prettier` (if installed) to autoformat all of
+    the code in the repository (more expansive than the included vscode
+    settings allow for).
+    - Note that you will have to install `prettier` yourself if you wish it to
+      run.
+  - You can adjust the settings for these programs via their respective config
+    files, but the point is to have consistent and opinionated autoformatting
+    so diffs and pull requests against your code present the least amount of
+    change as possible, so actual code changes stand out more.
+- `lint`
+  - Wrapper around both `flake8` and `mypy`.
+- `clean`
+  - Removes any leftover build files.
+- `build`
+  - Wrapper around `clean` and `setup.py build_ext` to build a cython package.
