@@ -44,8 +44,16 @@ keep everything in sync. More on these below
 
 ## direnv
 
-TODO: why direnv?
-TODO: link to direnv instructions
+[direnv](https://direnv.net/) is a tool that allows you to run scripts and
+inject environment variables into your shell when you enter a directory, and
+unload them when you leave.
+
+In the specific case of this package, the [`.envrc`](.envrc) file ensures that
+a specific version of python is installed and activated via pyenv as the
+current interpreter.
+
+When you run `init_package.sh` to start your own package, it will prompt you
+for a python version to use with your own updated .envrc.
 
 ## Code autoformatting
 
