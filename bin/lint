@@ -1,0 +1,17 @@
+#!/bin/bash
+# Runs linters
+
+# Make sure we're in the project root
+cd -P -- $(dirname -- "$0")/../
+
+# Run the linters and exit early if any of them fails
+for linter in flake8 mypy; do
+    echo "Running linter: $linter"
+    $linter
+    LINT_RESULT=$?
+    if [[ $LINT_RESULT != 0 ]]; then
+        echo "failed: $linter"
+        exit $LINT_RESULT
+    fi
+    echo "$linter finished"
+done

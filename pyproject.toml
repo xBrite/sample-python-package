@@ -1,18 +1,51 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+# https://black.readthedocs.io/en/stable/pyproject_toml.html#configuration-format
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.egg-info     # root of the project
+    | \.git
+    | \.mypy_cache
+    | \.tox
+    | _build
+    | build
+    | dist
+  )/
+  | /(
+      \.direnv
+    | \.vscode
+    | \.envrc
+    | \.python
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.tox]
+# annoying that we have to do this, but... https://tox.readthedocs.io/en/latest/example/basic.html
+legacy_tox_ini = """
 [tox]
 skipsdist = true
 envlist =
     flake8
-    py27
-    py36
+    py37
 
 [testenv]
 usedevelop = true
 basepython =
-    py27: python2.7
-    py36: python3.6
+    py37: python3.7
 deps =
-    cython
-    numpy
+    #cython
+    #numpy
     check-manifest
     readme_renderer
     docutils
@@ -26,11 +59,11 @@ commands =
 [testenv:benchmark]
 skipsdist = true
 usedevelop = true
-basepython = python2.7
+basepython = python3.7
 changedir = {toxinidir}
 deps =
-    cython
-    numpy
+    #cython
+    #numpy
     pytest
     pytest-benchmark
 commands =
@@ -40,7 +73,7 @@ commands =
 skipsdist = true
 skip_install = true
 usedevelop = false
-basepython = python2.7
+basepython = python3.7
 deps = flake8
 changedir = {toxinidir}
 commands = flake8 .
@@ -49,11 +82,11 @@ commands = flake8 .
 skipsdist = true
 skip_install = true
 usedevelop = false
-basepython = python2.7
+basepython = python3.7
 changedir = {toxinidir}
 deps =
-    cython
-    numpy
+    #cython
+    #numpy
     wheel
     twine
 whitelist_externals =
@@ -68,3 +101,8 @@ passenv =
     TWINE_PASSWORD
     TWINE_REPOSITORY
     TWINE_REPOSITORY_URL
+
+"""
+
+[tool.isort]
+profile = "black"
